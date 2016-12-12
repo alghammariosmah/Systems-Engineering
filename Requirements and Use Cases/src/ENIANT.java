@@ -86,6 +86,8 @@ public class ENIANT extends Frame implements WindowListener, ActionListener {
 			eniPanel.setRectangleMode();
 		}else if (e.getActionCommand().contentEquals("Line")){
 			eniPanel.setLineMode();
+		}else if (e.getActionCommand().contentEquals("Comment")){
+			eniPanel.setCommentMode();
 		}
 		
 	}

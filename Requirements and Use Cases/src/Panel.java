@@ -12,6 +12,7 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 	int state;
 	private static final int State_rect = 0;
 	private static final int State_line = 1;
+	private static final int State_Comm = 2;
 	Line curlLine;
 	
 	private java.util.List<Rectangle> rectangles;
@@ -31,14 +32,35 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 	public void mouseClicked(MouseEvent e) {
 		if (state  == State_rect){
 			Rectangle r = new Rectangle(e.getX(), e.getY());
+			System.out.println(e.getX()+" rect "+e.getY());
 			rectangles.add(r);
 			this.repaint();
 		}else if (curlLine == null && state == State_line){
-			curlLine = new Line(e.getX(), e.getY(), e.getX(), e.getY());
-			
+			curlLine = new Line();
+			if (rectangles != null){
+				for (Rectangle r: rectangles){
+					if( e.getX() >= r.getX() && e.getX() <= (r.getX()+100) ){
+						if(e.getY() >= r.getY() && e.getY() <= (r.getY()+100)){
+							int x = (r.getX()+(r.getX()+100))/2;
+							int y = (r.getY()+(r.getY()+100))/2;
+							curlLine.setOrigin(x, y);
+						}
+					}
+				}
+			}
 		}else if ( curlLine != null && state == State_line){
 			lines.add(curlLine);
 			curlLine = null;
+		}else if( state == State_Comm){
+			if (rectangles != null){
+				for (Rectangle r: rectangles){
+					if( e.getX() >= r.getX() && e.getX() <= (r.getX()+100) ){
+						if(e.getY() >= r.getY() && e.getY() <= (r.getY()+100)){
+							System.out.println(e.getXOnScreen()+" getting "+ e.getYOnScreen());
+						}
+					}
+				}
+			}
 		}
 		
 	}
@@ -49,6 +71,10 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 	
 	public void setLineMode(){
 		state = State_line;
+	}
+	
+	public void setCommentMode(){
+		state = State_Comm;
 	}
 	
 	public void paint(Graphics g){
@@ -76,30 +102,44 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 		
 	}
 	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-//		if (curlLine != null && )
-		
+	public void mouseReleased(MouseEvent e) {
+//		System.out.println(e.getX()+" "+ e.getY());
+////		if (curlLine != null && )
+//		for( Rectangle r: rectangles){
+//			if(e.getX() == r.getX() && e.getY() == r.getY()){
+//				
+//			}
+//		}
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-//		if (state == State_line){
-//			curlLine.setDest(e.getX(), e.getY());
-//			this.repaint();
-//		}
+		
 		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if (curlLine != null && state == State_line){
-			curlLine.setDest(e.getX(), e.getY());
-			this.repaint();
+			if (rectangles != null){
+				for (Rectangle r: rectangles){
+					if( e.getX() >= r.getX() && e.getX() <= (r.getX()+100) ){
+						if(e.getY() >= r.getY() && e.getY() <= (r.getY()+100)){
+							int x = (r.getX()+(r.getX()+100))/2;
+							int y = (r.getY()+(r.getY()+100))/2;
+							curlLine.setDest(x, y);
+							this.repaint();
+						}
+					}
+				}
+			}
+			
 		}
 		
 	}
