@@ -97,7 +97,7 @@ public class ENIANT extends Frame implements WindowListener, ActionListener {
 		}else if (e.getActionCommand().contentEquals("Dashed Line")){
 			eniPanel.setDashedLineMode();
 		}else if (e.getActionCommand().contentEquals("Dashed Rectangle")){
-			eniPanel.setRectangleMode();
+			eniPanel.setDashedRectMode();
 		}
 		
 	}

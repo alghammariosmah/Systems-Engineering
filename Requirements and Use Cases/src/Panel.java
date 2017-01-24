@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
+import java.awt.geom.RoundRectangle2D;
 import java.util.List;
 
 
@@ -180,7 +181,7 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 	
 	private void drawDashedRect(Graphics g, int x1, int y1){
 		//creates a copy of the Graphics instance
-        Graphics2D g2d = (Graphics2D) g.create();
+        Graphics2D g2d = (Graphics2D) g;
 
         //set the stroke of the copy, not the original 
         Stroke dashed = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
@@ -189,7 +190,7 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
      
 
         //gets rid of the copy
-        g2d.dispose();
+        //g2d.dispose();
 	}
 	
 	private void drawDashedLine(Graphics g, int x1, int y1, int x2, int y2){
