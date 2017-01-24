@@ -24,14 +24,20 @@ public class ENIANT extends Frame implements WindowListener, ActionListener {
 		Button rectangleBtn = new Button("Rectangle");
 		Button lineBtn = new Button("Line");
 		Button commentBtn = new Button("Comment");
+		Button dashedLineBtn = new Button("Dashed Line");
+		Button dashedRectangleBtn = new Button("Dashed Rectangle");
 		
 		rectangleBtn.addActionListener(this);
 		lineBtn.addActionListener(this);
 		commentBtn.addActionListener(this);
+		dashedLineBtn.addActionListener(this);
+		dashedRectangleBtn.addActionListener(this);
 		
 		toolbar.add(rectangleBtn);
 		toolbar.add(lineBtn);
 		toolbar.add(commentBtn);
+		toolbar.add(dashedLineBtn);
+		toolbar.add(dashedRectangleBtn);
 		
 		
 		this.add(toolbar, BorderLayout.SOUTH);
@@ -88,6 +94,10 @@ public class ENIANT extends Frame implements WindowListener, ActionListener {
 			eniPanel.setLineMode();
 		}else if (e.getActionCommand().contentEquals("Comment")){
 			eniPanel.setCommentMode();
+		}else if (e.getActionCommand().contentEquals("Dashed Line")){
+			eniPanel.setDashedLineMode();
+		}else if (e.getActionCommand().contentEquals("Dashed Rectangle")){
+			eniPanel.setRectangleMode();
 		}
 		
 	}
