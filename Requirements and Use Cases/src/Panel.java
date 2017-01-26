@@ -11,6 +11,8 @@ import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
 import java.util.List;
 
+import javax.swing.JTextArea;
+
 
 
 public class Panel extends java.awt.Panel implements MouseListener, MouseMotionListener {
@@ -103,8 +105,8 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 		// Part of dashed lines
 		else if (dashedLine == null && state == State_DashedLine){
 			dashedLine = new Line();
-			if (rectangles != null){
-				for (Rectangle r: rectangles){
+			if (dashedRectangles != null){
+				for (Rectangle r: dashedRectangles){
 					if( e.getX() >= r.getX() && e.getX() <= (r.getX()+100) ){
 						if(e.getY() >= r.getY() && e.getY() <= (r.getY()+100)){
 							int x = (r.getX()+(r.getX()+100))/2;
@@ -143,9 +145,11 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 	}
 	
 	public void paint(Graphics g){
-		Graphics2D g2 = (Graphics2D)g;
+		Graphics2D g2 = (Graphics2D)g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                             RenderingHints.VALUE_ANTIALIAS_ON);
+       
+        
 		for (Rectangle r: rectangles){
 			g.drawRect(r.getX(),r.getY(),100, 100);
 			
@@ -187,10 +191,10 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
         Stroke dashed = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
         g2d.setStroke(dashed);
         g2d.drawRect(x1, y1, 100, 100);
+        
+        
+        g2d.drawString("Dashed Rectangle", x1, y1-10);
      
-
-        //gets rid of the copy
-        //g2d.dispose();
 	}
 	
 	private void drawDashedLine(Graphics g, int x1, int y1, int x2, int y2){
@@ -201,6 +205,11 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
         Stroke dashed = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
         g2d.setStroke(dashed);
         g2d.drawLine(x1, y1, x2, y2);
+        
+        int x = Math.abs(x1 + (x2 - x1)/2);
+        int y = Math.abs(y1 + ((y2 - y1)/2));
+        
+        g2d.drawString("Dashed Line", x , y);
 
         //gets rid of the copy
         g2d.dispose();
@@ -275,8 +284,9 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 			
 		}
 		else if (dashedLine != null && state == State_DashedLine){
-			if (rectangles != null){
-				for (Rectangle r: rectangles){
+			
+			if (dashedRectangles != null){
+				for (Rectangle r: dashedRectangles){
 					if( e.getX() >= r.getX() && e.getX() <= (r.getX()+100) ){
 						if(e.getY() >= r.getY() && e.getY() <= (r.getY()+100)){
 							int x = (r.getX()+(r.getX()+100))/2;
