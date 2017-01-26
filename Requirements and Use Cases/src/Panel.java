@@ -151,6 +151,7 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
        
         
 		for (Rectangle r: rectangles){
+			g2.drawString("Normal Rectangle", r.getX(),r.getY()-10);
 			g.drawRect(r.getX(),r.getY(),100, 100);
 			
 		}
@@ -161,11 +162,19 @@ public class Panel extends java.awt.Panel implements MouseListener, MouseMotionL
 		}
 		
 		for (Line l: lines){
+			int x = Math.abs(l.getX1() + (l.getX2() - l.getX1())/2);
+	        int y = Math.abs(l.getY1() + ((l.getY2() - l.getY1())/2));
+	        
+	        g2.drawString("Normal Line", x , y);
 			g.drawLine(l.getX1(), l.getY1(), l.getX2(),l.getY2());
 			drawArrowHead(g2, l.getX2(), l.getX1(), l.getY2(), l.getY1());
 		}
 		
 		if( curlLine != null && state == State_line){
+			int x = Math.abs(curlLine.getX1() + (curlLine.getX2() - curlLine.getX1())/2);
+	        int y = Math.abs(curlLine.getY1() + ((curlLine.getY2() - curlLine.getY1())/2));
+	        
+	        g2.drawString("Normal Line", x , y);
 			g.drawLine(curlLine.getX1(), curlLine.getY1(), curlLine.getX2(), curlLine.getY2());
 			drawArrowHead(g2, curlLine.getX2(), curlLine.getX1(), curlLine.getY2(), curlLine.getY1());
 		}
