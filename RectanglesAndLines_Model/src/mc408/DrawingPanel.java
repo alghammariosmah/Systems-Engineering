@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class DrawingPanel extends JPanel implements Observer {
+public class DrawingPanel extends Panel implements Observer {
 	
 	private Vector<RLObject> rlObjects;
 	private RLLine oldLine;
@@ -33,12 +33,15 @@ public class DrawingPanel extends JPanel implements Observer {
 	} 
 	
 	public void paint(Graphics g)  {
-//		if (rlObjects != null) {
-//			for (RLObject rlo : rlObjects) {
-//				rlo.draw(g);
-//			}
-//		}
+		if (rlObjects != null) {
+			for (RLObject rlo : rlObjects) {
+				rlo.draw(g);
+			}
+		}
+		if (currentLine != null) {
+			currentLine.draw(g);
+		}
 		
-		g.drawRect(30,  30,  30,  30);
+//		g.drawRect(30,  30,  30,  30);
 	} 	
 }

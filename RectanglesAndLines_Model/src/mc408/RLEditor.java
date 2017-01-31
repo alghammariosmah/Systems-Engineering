@@ -3,6 +3,7 @@ package mc408;
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
@@ -21,7 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.plaf.basic.BasicBorders.SplitPaneBorder;
   
-class RLEditor extends JFrame implements MouseListener, MouseMotionListener {  
+class RLEditor extends Frame implements MouseListener, MouseMotionListener {  
 	
 	private Model model;
 	private Toolbar toolbar;
@@ -54,7 +55,7 @@ class RLEditor extends JFrame implements MouseListener, MouseMotionListener {
 	    
 	    toolbar = new Toolbar(checkboxes, "Square");
 	    drawingPanel = new DrawingPanel(this, this);
-	    overviewPanel = new OverViewPanel(this, this);
+	    overviewPanel = new OverViewPanel();
 	    
 	    model = new Model();
 	    model.addObserver(drawingPanel);
@@ -66,24 +67,17 @@ class RLEditor extends JFrame implements MouseListener, MouseMotionListener {
 		currentTool = rectangleTool;
 	     
 		add(toolbar, BorderLayout.NORTH);
+		
+		drawingPanel.setPreferredSize(new Dimension(450, 480));
+		add(drawingPanel, BorderLayout.WEST);
+		overviewPanel.setPreferredSize(new Dimension(200,480));
+		overviewPanel.setBackground(Color.LIGHT_GRAY);
+		add(overviewPanel, BorderLayout.EAST);
 
 
 	
-
-		JSplitPane splitPane = new JSplitPane();//JSplitPane.HORIZONTAL_SPLIT, drawingPanel, overviewPanel
-		splitPane.setLeftComponent(drawingPanel);
-		splitPane.setRightComponent(overviewPanel);
-		splitPane.setDividerLocation(0.5);
-		splitPane.setResizeWeight(1.0);
 		
-		
-		splitPane.setOneTouchExpandable(true);
-		getContentPane().add(splitPane);
-		
-				
-
-		
-		setSize(640,480);
+		setSize(650,480);
 		setVisible(true);   
 		
 		addWindowListener(new WindowAdapter() {

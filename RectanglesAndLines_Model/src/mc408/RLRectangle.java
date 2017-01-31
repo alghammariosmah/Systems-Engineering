@@ -28,7 +28,7 @@ public class RLRectangle implements RLObject {
 	}
 	
 	public void scalingDraw(Graphics g){
-		g.drawRect(rect.x-20, rect.y-20, 10, 10);
+		g.drawRect(rect.x/4, rect.y/4,  10,  10);
 	}
 
 }
