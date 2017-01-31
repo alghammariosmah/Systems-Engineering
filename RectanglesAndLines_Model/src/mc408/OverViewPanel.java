@@ -32,8 +32,9 @@ public class OverViewPanel extends Panel implements Observer{
 				
 			}
 		}
-		
-//		g.drawRect(10,  10,  10,  10);
+		if (currentLine != null) {
+			currentLine.scalingDraw(g);
+		}
 	} 	
 
 }
