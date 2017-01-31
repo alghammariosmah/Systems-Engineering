@@ -34,4 +34,10 @@ public class RLLine implements RLObject {
 	public void draw(Graphics g) {
 		g.drawLine(x1, y1, x2, y2);
 	}
+
+	@Override
+	public void scalingDraw(Graphics g) {
+		g.drawLine(x1, y1, x2, y2);
+		
+	}
 }

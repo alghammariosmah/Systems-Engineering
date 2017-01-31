@@ -18,6 +18,7 @@ public class RectangleTool implements Tool {
 	public void mouseClicked(MouseEvent e) {
 		RLRectangle r = new RLRectangle(e.getX(), e.getY(), 40, 40);
 		model.addRectangle(r);
+		
 	}
 
 	@Override

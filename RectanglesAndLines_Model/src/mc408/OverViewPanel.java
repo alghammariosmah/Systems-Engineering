@@ -24,17 +24,18 @@ public class OverViewPanel extends JPanel implements Observer{
 	
 	public void update(Observable o, Object arg) {
 		rlObjects = ((Model)o).getRLObjects();
-		oldLine = currentLine;
-		currentLine = ((Model)o).getCurrentLine();
 		this.repaint();	
 	} 
 	
 	public void paint(Graphics g)  {
-		if (rlObjects != null) {
-			for (RLObject rlo : rlObjects) {
-				rlo.draw(g);
-			}
-		}
+//		if (rlObjects != null) {
+//			for (RLObject rlo : rlObjects) {
+//				rlo.scalingDraw(g);
+//				
+//			}
+//		}
+		
+		g.drawRect(10,  10,  10,  10);
 	} 	
 
 }

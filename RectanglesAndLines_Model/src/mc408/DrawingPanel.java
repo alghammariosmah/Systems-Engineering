@@ -22,8 +22,7 @@ public class DrawingPanel extends JPanel implements Observer {
 	
 	public DrawingPanel(MouseListener mouseListener, MouseMotionListener mouseMotionListener) {
 		addMouseListener(mouseListener);
-		addMouseMotionListener(mouseMotionListener);
-		
+		addMouseMotionListener(mouseMotionListener);	
 	}
 	
 	public void update(Observable o, Object arg) {
@@ -34,10 +33,12 @@ public class DrawingPanel extends JPanel implements Observer {
 	} 
 	
 	public void paint(Graphics g)  {
-		if (rlObjects != null) {
-			for (RLObject rlo : rlObjects) {
-				rlo.draw(g);
-			}
-		}
+//		if (rlObjects != null) {
+//			for (RLObject rlo : rlObjects) {
+//				rlo.draw(g);
+//			}
+//		}
+		
+		g.drawRect(30,  30,  30,  30);
 	} 	
 }
