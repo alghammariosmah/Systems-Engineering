@@ -8,18 +8,32 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class ENIANT extends Frame implements WindowListener, ActionListener {
+import javax.swing.JFrame;
+import javax.swing.JSplitPane;
+
+public class ENIANT extends JFrame implements WindowListener, ActionListener {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Panel eniPanel;
+	private Panel overviewPanel;
 	// add 
 	
 	ENIANT(){
 		this.setSize(640,480);
 		eniPanel = new Panel();
-		this.add(eniPanel, BorderLayout.CENTER);
+		overviewPanel = new Panel();
+		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setLeftComponent(eniPanel);
+		splitPane.setRightComponent(overviewPanel);
+		
+		
+		splitPane.setOneTouchExpandable(true);
+		getContentPane().add(splitPane);
+		
+		//this.add(eniPanel, BorderLayout.CENTER);
 		Panel toolbar = new Panel();
 		Button rectangleBtn = new Button("Rectangle");
 		Button lineBtn = new Button("Line");
@@ -27,7 +41,7 @@ public class ENIANT extends Frame implements WindowListener, ActionListener {
 		Button dashedLineBtn = new Button("Dashed Line");
 		Button dashedRectangleBtn = new Button("Dashed Rectangle");
 		
-		rectangleBtn.addActionListener(this);
+		rectangleBtn.addActionListener(this);// action listener as an object
 		lineBtn.addActionListener(this);
 		commentBtn.addActionListener(this);
 		dashedLineBtn.addActionListener(this);

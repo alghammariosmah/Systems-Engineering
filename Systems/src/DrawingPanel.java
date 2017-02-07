@@ -1,4 +1,3 @@
-package mc408;
 
 import java.awt.Graphics;
 import java.awt.Panel;
@@ -42,5 +41,6 @@ public class DrawingPanel extends Panel implements Observer {
 			currentLine.draw(g);
 		}
 		
+//		g.drawRect(30,  30,  30,  30);
 	} 	
 }
